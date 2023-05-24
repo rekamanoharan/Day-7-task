@@ -1,0 +1,79 @@
+1.a.Get all the countries from Asia continent /region using Filter function
+
+function printData() {
+    const countries = JSON.parse(this.responseText);
+   var res=countries.filter((coun) => coun.region=="Asia");
+   console.log(res);
+  };
+  
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", printData);
+  request.open("GET", "https://restcountries.com/v3.1/all");
+  request.send(); 
+
+b.Get all the countries with a population of less than 2 lakhs using Filter function
+
+function printData() {
+    const countries = JSON.parse(this.responseText);
+   var res=countries.filter((coun) => coun.population < 200000);
+   console.log(res);
+  };
+  
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", printData);
+  request.open("GET", "https://restcountries.com/v3.1/all");
+  request.send(); 
+
+c.Print the following details name, capital, flag using forEach function
+ 
+function printData() {
+    const countries = JSON.parse(this.responseText);
+    countries.forEach((coun) => {
+    console.log(coun.flags),
+    console.log(coun.name),
+    console.log(coun.capital)
+  });
+  }
+  
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", printData);
+  request.open("GET", "https://restcountries.com/v3.1/all");
+  request.send(); 
+
+d.Print the total population of countries using reduce function
+
+ function printData(){
+       var data = JSON.parse(request.response);
+       const population=data.reduce((acc,curr)=>{
+                return acc+curr.population;
+                
+            },0) 
+            console.log(population);
+    }
+  
+ var request = new XMLHttpRequest();
+ request.addEventListener("load", printData);
+ request.open('GET','https://restcountries.com/v3.1/all');
+ request.send();
+  
+e.Print the country which uses US Dollars as currency.
+
+function printData() {
+    const countries = JSON.parse(this.responseText);
+   countries.filter((coun) =>{
+  /* console.log(coun.currencies); */
+  for(let key in coun.currencies){
+  if(coun.currencies[key].symbol==="$"){
+  console.log(coun.currencies[key].name)
+  }
+  }
+   })
+   }
+  
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", printData);
+  request.open("GET", "https://restcountries.com/v3.1/all");
+  request.send();
+ 
+  
+  
